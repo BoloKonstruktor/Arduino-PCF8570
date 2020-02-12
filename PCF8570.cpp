@@ -22,7 +22,7 @@ readPacket( offset, buff, 1 );
 return (uint8_t)buff[0];
 }
 
-uint8_t PCF8570::writeByte( uint8_t offset, uint8_t data ){
+void PCF8570::writeByte( uint8_t offset, uint8_t data ){
 uint8_t buff[1];
 buff[0] = data;
 writePacket( offset, buff, 1 );
@@ -72,7 +72,7 @@ Wire.beginTransmission( this->hwaddr );
 Wire.endTransmission();
 }
 
-uint8_t PCF8570::read( uint8_t offset, void* data, uint8_t size ){
+uint8_t PCF8570::readMemory( uint8_t offset, void* data, uint8_t size ){
 uint8_t* buff = (uint8_t*)data;
 uint8_t off = offset;
 
@@ -84,7 +84,7 @@ uint8_t off = offset;
 return off;
 }
 
-uint8_t PCF8570::write( uint8_t offset, void* data, uint8_t size ){
+uint8_t PCF8570::writeMemory( uint8_t offset, void* data, uint8_t size ){
 const uint8_t* buff = (uint8_t*)data;
 uint8_t off = offset;
   
