@@ -72,9 +72,9 @@ Wire.beginTransmission( this->hwaddr );
 Wire.endTransmission();
 }
 
-int PCF8570::read( uint8_t offset, void* data, uint8_t size ){
+uint8_t PCF8570::read( uint8_t offset, void* data, uint8_t size ){
 uint8_t* buff = (uint8_t*)data;
-int off = offset;
+uint8_t off = offset;
 
     for( uint8_t i = 0; i < size; i++ ) {
     buff[i] = readByte( offset );
@@ -84,9 +84,9 @@ int off = offset;
 return off;
 }
 
-void PCF8570::write( uint8_t offset, void* data, uint8_t size ){
+uint8_t PCF8570::write( uint8_t offset, void* data, uint8_t size ){
 const uint8_t* buff = (uint8_t*)data;
-int off = offset;
+uint8_t off = offset;
   
   for ( uint8_t i = 0; i < size; i++) {
   writeByte( offset, buff[i] );
