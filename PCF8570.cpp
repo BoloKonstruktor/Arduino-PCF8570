@@ -28,6 +28,30 @@ buff[0] = data;
 writePacket( offset, buff, 1 );
 }
 
+uint8_t PCF8570::readMemory( uint8_t offset, void* data, uint8_t size ){
+uint8_t* buff = (uint8_t*)data;
+uint8_t off = offset;
+
+    for( uint8_t i = 0; i < size; i++ ) {
+    buff[i] = readByte( offset );
+    off++;
+    }
+  
+return off;
+}
+
+uint8_t PCF8570::writeMemory( uint8_t offset, void* data, uint8_t size ){
+const uint8_t* buff = (uint8_t*)data;
+uint8_t off = offset;
+  
+  for ( uint8_t i = 0; i < size; i++) {
+  writeByte( offset, buff[i] );
+  off++;
+  }
+  
+return off;
+}
+
 void PCF8570::clearMemory(void){
   
   for( uint8_t offset = 0; offset < 256; offset++ ){
@@ -70,28 +94,4 @@ Wire.beginTransmission( this->hwaddr );
 #endif
 
 Wire.endTransmission();
-}
-
-uint8_t PCF8570::readMemory( uint8_t offset, void* data, uint8_t size ){
-uint8_t* buff = (uint8_t*)data;
-uint8_t off = offset;
-
-    for( uint8_t i = 0; i < size; i++ ) {
-    buff[i] = readByte( offset );
-    off++;
-    }
-  
-return off;
-}
-
-uint8_t PCF8570::writeMemory( uint8_t offset, void* data, uint8_t size ){
-const uint8_t* buff = (uint8_t*)data;
-uint8_t off = offset;
-  
-  for ( uint8_t i = 0; i < size; i++) {
-  writeByte( offset, buff[i] );
-  off++;
-  }
-  
-return off;
 }
