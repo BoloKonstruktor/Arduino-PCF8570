@@ -12,7 +12,7 @@ na zapis zmiennej wielobajtowej, tablicy bajtów lub struktury do PCF8570. Metod
 te mają identyczne argumenty. Pierwszy "offset" to adres komórki, drugi "data"
 to wskaźnik do danych i trzeci "size" to rozmiar danych.
 
-Zwracana wartośćprzez w/w metody to adres do następnej komórki.
+Zwracana wartość przez w/w metody to adres do następnej komórki.
 
 Jako, że PCF8570 posiada trzy linie adresowe: "A0, A1, A2" co umożliwia podłączenie
 do ośmiu układów do jednego interfejsu i2c to adres sprzętowy danego układu można
