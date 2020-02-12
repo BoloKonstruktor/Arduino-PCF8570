@@ -38,9 +38,9 @@ void PCF8570::clearMemory(void){
 void PCF8570::readPacket( uint8_t offset, uint8_t * buff, uint8_t size ){
 Wire.beginTransmission( this->hwaddr );
 #if ARDUINO >= 100
-  Wire.write((uint8_t)lowByte(offset));
+  Wire.write(offset);
 #else
-  Wire.send((uint8_t)lowByte(offset));
+  Wire.send(offset);
 #endif
 Wire.endTransmission();
 Wire.requestFrom( this->hwaddr, (int)size );
@@ -62,11 +62,55 @@ void PCF8570::writePacket( uint8_t offset, uint8_t * buff, uint8_t size ){
 Wire.beginTransmission( this->hwaddr );
 
 #if ARDUINO >= 100
-  Wire.write( (uint8_t)lowByte(offset) );
+  Wire.write( offset );
   Wire.write( buff, size );
 #else
-  Wire.send( lowByte(offset) );
-  Wire.send( highByte(offset) );
+  Wire.send( offset );
+  Wire.send( buff, size );
+#endif
+
+Wire.endTransmission();
+}
+
+void PCF8570::read( uint8_t offset, void* data, uint8_t size ){
+uint8_t* buff = (uint8_t*)data;
+
+Wire.beginTransmission( this->hwaddr );
+#if ARDUINO >= 100
+  Wire.write(offset);
+#else
+  Wire.send(offset);
+#endif
+Wire.endTransmission();
+Wire.requestFrom( this->hwaddr, (int)size );
+
+  while ( !Wire.available() );
+
+  for ( uint8_t i = 0; i < size; i++ ){
+#if ARDUINO >= 100
+  buff[i] = Wire.read();
+#else
+  buff[i] = Wire.receive();
+#endif
+  }
+
+Wire.endTransmission();
+}
+
+void PCF8570::write( uint8_t offset, void* data, uint8_t size ){
+const uint8_t* buff = (uint8_t*)data;
+
+  for ( uint8_t i = 0; i < size; i++) {
+  ram[i] = buffer[i];
+  }
+  
+Wire.beginTransmission( this->hwaddr );
+
+#if ARDUINO >= 100
+  Wire.write( offset );
+  Wire.write( buff, size );
+#else
+  Wire.send( offset );
   Wire.send( buff, size );
 #endif
 
