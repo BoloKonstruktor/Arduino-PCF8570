@@ -99,11 +99,6 @@ Wire.endTransmission();
 
 void PCF8570::write( uint8_t offset, void* data, uint8_t size ){
 const uint8_t* buff = (uint8_t*)data;
-
-  for ( uint8_t i = 0; i < size; i++) {
-  ram[i] = buffer[i];
-  }
-  
 Wire.beginTransmission( this->hwaddr );
 
 #if ARDUINO >= 100
