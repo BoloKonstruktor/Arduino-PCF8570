@@ -21,8 +21,8 @@ public:
 	void clearMemory( void );
 	void readPacket( uint8_t, uint8_t*, uint8_t );
 	void writePacket( uint8_t, uint8_t*, uint8_t );
-	uint8_t read( uint8_t, void*, uint8_t );
-	uint8_t write( uint8_t, void*, uint8_t );
+	uint8_t readMemory( uint8_t, void*, uint8_t );
+	uint8_t writeMemory( uint8_t, void*, uint8_t );
 };
 
 
