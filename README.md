@@ -3,7 +3,7 @@ Biblioteka do obsługi szeregowej pamięci RAM  i2c
 
 Szęść Boże!
 
-Bilioteka zawiera typową obsługę pamięci PCF8570. Jednak na uwagę zasługują metody
+Klasa zawiera typową obsługę pamięci PCF8570 z wykorzystaniem biblioteki Wire. Jednak na uwagę zasługują metody
 "readMemory" i "writeMemory"
 
 Metoda "readMemory" pozwala na odczyt danych z PCF8570 do zmiennej wielobajtowej,
