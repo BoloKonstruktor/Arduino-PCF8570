@@ -20,11 +20,10 @@ public:
 	void writeByte( uint8_t, uint8_t );
 	uint8_t readMemory( uint8_t, void*, uint8_t );
 	uint8_t writeMemory( uint8_t, void*, uint8_t );
-	void clearMemory( void );
-	void readPacket( uint8_t, uint8_t*, uint8_t );
-	void writePacket( uint8_t, uint8_t*, uint8_t );
+	void clearMemory( uint8_t=0x0 );
 };
 
 
 
 #endif
+
